@@ -6,11 +6,11 @@
 #    By: recherra <recherra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 16:56:57 by recherra          #+#    #+#              #
-#    Updated: 2024/05/08 16:56:58 by recherra         ###   ########.fr        #
+#    Updated: 2024/05/08 17:52:09 by recherra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror -fsanitize=address
 SRC=init.c
 OBJ=$(SRC:.c=.o)
 NAME=push_swap
@@ -19,17 +19,17 @@ FT_PRINTF=ft_printf/libftprintf.a
 all: $(NAME)
 
 $(NAME): $(FT_PRINTF) $(OBJ)
-    cc $(CFLAGS) -o $(NAME) $(OBJ) $(FT_PRINTF)
+	cc $(CFLAGS) -o $(NAME) $(OBJ) $(FT_PRINTF)
 
 $(FT_PRINTF):
-    make -C ft_printf/
+	make -C ft_printf/
 
 clean:
-    make -C ft_printf/ clean
-    rm -f $(OBJ)
+	make -C ft_printf/ clean
+	rm -f $(OBJ)
 
 fclean: clean
-    make -C ft_printf/ fclean
-    rm -f $(NAME)
+	make -C ft_printf/ fclean
+	rm -f $(NAME)
 
 re: fclean all
