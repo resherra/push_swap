@@ -24,3 +24,8 @@ typedef struct s_stack
     int value;
     struct s_stack *next;
 } t_stack;
+
+
+void	lstclear(t_stack **lst);
+void	lstadd_back(t_stack **lst, t_stack *new);
+t_stack *lstnew(int number);

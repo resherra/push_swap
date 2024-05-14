@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CFLAGS=-Wall -Wextra -Werror -fsanitize=address
-SRC=init.c
+SRC=init.c list_utils.c
 OBJ=$(SRC:.c=.o)
 NAME=push_swap
 LIBFT=libft/libft.a
