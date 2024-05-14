@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 16:56:48 by recherra          #+#    #+#             */
-/*   Updated: 2024/05/08 16:56:50 by recherra         ###   ########.fr       */
+/*   Created: 2023/12/20 12:29:34 by recherra          #+#    #+#             */
+/*   Updated: 2024/01/03 19:49:15 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "ft_printf/ft_printf.h"
-#include "libft/libft.h"
-#include <stdio.h>
-
-//read, write, malloc, free,
-//exit
-
-
-typedef struct s_stack
+void	ft_putchar_fd(char c, int fd)
 {
-    int value;
-    struct s_stack *next;
-} t_stack;
+	if (fd < 0)
+		return ;
+	write(fd, &c, 1);
+}

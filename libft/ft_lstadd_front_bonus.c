@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 16:56:48 by recherra          #+#    #+#             */
-/*   Updated: 2024/05/08 16:56:50 by recherra         ###   ########.fr       */
+/*   Created: 2023/12/23 13:46:08 by recherra          #+#    #+#             */
+/*   Updated: 2024/01/04 13:42:46 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "ft_printf/ft_printf.h"
-#include "libft/libft.h"
-#include <stdio.h>
-
-//read, write, malloc, free,
-//exit
-
-
-typedef struct s_stack
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-    int value;
-    struct s_stack *next;
-} t_stack;
+	if (!lst)
+		return ;
+	if (*lst && new)
+	{
+		new->next = *lst;
+		*lst = new;
+	}
+	else
+		*lst = new;
+}

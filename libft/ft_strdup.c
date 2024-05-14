@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 16:56:48 by recherra          #+#    #+#             */
-/*   Updated: 2024/05/08 16:56:50 by recherra         ###   ########.fr       */
+/*   Created: 2023/12/15 16:02:35 by recherra          #+#    #+#             */
+/*   Updated: 2024/01/04 21:26:53 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "ft_printf/ft_printf.h"
-#include "libft/libft.h"
-#include <stdio.h>
-
-//read, write, malloc, free,
-//exit
-
-
-typedef struct s_stack
+char	*ft_strdup(const char *s1)
 {
-    int value;
-    struct s_stack *next;
-} t_stack;
+	char	*str;
+	int		len;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(s1);
+	str = ft_calloc((len + 1), sizeof(char));
+	if (!str)
+		return (NULL);
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	return (str);
+}

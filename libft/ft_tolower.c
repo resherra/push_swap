@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 16:56:48 by recherra          #+#    #+#             */
-/*   Updated: 2024/05/08 16:56:50 by recherra         ###   ########.fr       */
+/*   Created: 2023/12/10 15:59:59 by recherra          #+#    #+#             */
+/*   Updated: 2023/12/10 16:21:10 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "ft_printf/ft_printf.h"
-#include "libft/libft.h"
-#include <stdio.h>
-
-//read, write, malloc, free,
-//exit
-
-
-typedef struct s_stack
+int	ft_tolower(int c)
 {
-    int value;
-    struct s_stack *next;
-} t_stack;
+	if (c >= 'A' && c <= 'Z')
+		c += 32;
+	return (c);
+}

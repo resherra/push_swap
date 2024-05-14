@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 16:56:48 by recherra          #+#    #+#             */
-/*   Updated: 2024/05/08 16:56:50 by recherra         ###   ########.fr       */
+/*   Created: 2023/12/26 18:49:08 by recherra          #+#    #+#             */
+/*   Updated: 2024/01/04 21:30:00 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "ft_printf/ft_printf.h"
-#include "libft/libft.h"
-#include <stdio.h>
-
-//read, write, malloc, free,
-//exit
-
-
-typedef struct s_stack
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-    int value;
-    struct s_stack *next;
-} t_stack;
+	t_list	*ne;
+
+	if (!lst || !del)
+		return ;
+	if (*lst)
+	{
+		while (*lst)
+		{
+			ne = *lst;
+			*lst = (*lst)->next;
+			del(ne->content);
+			free(ne);
+		}
+	}
+}

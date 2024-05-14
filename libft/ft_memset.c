@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 16:56:48 by recherra          #+#    #+#             */
-/*   Updated: 2024/05/08 16:56:50 by recherra         ###   ########.fr       */
+/*   Created: 2023/12/11 16:28:26 by recherra          #+#    #+#             */
+/*   Updated: 2023/12/29 17:19:07 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "ft_printf/ft_printf.h"
-#include "libft/libft.h"
-#include <stdio.h>
-
-//read, write, malloc, free,
-//exit
-
-
-typedef struct s_stack
+void	*ft_memset(void *s, int c, size_t n)
 {
-    int value;
-    struct s_stack *next;
-} t_stack;
+	unsigned char	*p;
+	unsigned char	ch;
+
+	p = s;
+	ch = c;
+	while (n)
+	{
+		*p++ = ch;
+		n--;
+	}
+	return (s);
+}

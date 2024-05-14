@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 16:56:48 by recherra          #+#    #+#             */
-/*   Updated: 2024/05/08 16:56:50 by recherra         ###   ########.fr       */
+/*   Created: 2023/12/10 16:00:04 by recherra          #+#    #+#             */
+/*   Updated: 2023/12/10 16:21:17 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "ft_printf/ft_printf.h"
-#include "libft/libft.h"
-#include <stdio.h>
-
-//read, write, malloc, free,
-//exit
-
-
-typedef struct s_stack
+int	ft_toupper(int c)
 {
-    int value;
-    struct s_stack *next;
-} t_stack;
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
+}

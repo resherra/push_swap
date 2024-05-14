@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: resherra <resherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 16:56:48 by recherra          #+#    #+#             */
-/*   Updated: 2024/05/08 16:56:50 by recherra         ###   ########.fr       */
+/*   Created: 2023/12/22 12:11:13 by recherra          #+#    #+#             */
+/*   Updated: 2024/01/05 23:31:44 by resherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "ft_printf/ft_printf.h"
-#include "libft/libft.h"
-#include <stdio.h>
-
-//read, write, malloc, free,
-//exit
-
-
-typedef struct s_stack
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-    int value;
-    struct s_stack *next;
-} t_stack;
+	t_list	*curr;
+
+	if (!lst)
+		return ;
+	if (!(*lst))
+	{
+		*lst = new;
+		return ;
+	}
+	curr = *lst;
+	while (curr->next)
+		curr = curr->next;
+	curr->next = new;
+}
