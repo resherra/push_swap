@@ -41,20 +41,3 @@ void	lstadd_back(t_stack **lst, t_stack *new)
         curr = curr->next;
     curr->next = new;
 }
-
-void	lstclear(t_stack **lst)
-{
-    t_stack 	*ne;
-
-    if (!lst)
-        return ;
-    if (*lst)
-    {
-        while (*lst)
-        {
-            ne = *lst;
-            *lst = (*lst)->next;
-            free(ne);
-        }
-    }
-}
