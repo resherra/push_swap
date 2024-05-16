@@ -81,6 +81,24 @@ void sanitize(char *str, t_stack **stack_a)
     free(res);
 }
 
+void is_sorted(t_stack *stack_a)
+{
+    t_stack *curr = stack_a;
+
+    while (curr)
+    {
+        t_stack *tes = curr;
+        while (tes)
+        {
+            if (curr->value > tes->value)
+                return;
+            tes = tes->next;
+        }
+        curr = curr->next;
+    }
+    exit(1);
+}
+
 int main(int ac, char **av)
 {
     int i;
@@ -94,27 +112,29 @@ int main(int ac, char **av)
         return 1;
     while(av[i])
         sanitize(av[i++], &stack_a);
+    is_sorted(stack_a);
 
 //    check values;
-    pb(&stack_a, &stack_b);
-    pb(&stack_a, &stack_b);
-
-
-
-    t_stack *curr = stack_a;
-    while (curr)
-    {
-        printf("stack a -> %d\n", curr->value);
-        curr = curr->next;
-    }
-
-    t_stack *curr_b = stack_b;
-    while (curr_b)
-    {
-        printf("stack b -> %d\n", curr_b->value);
-        curr_b = curr_b->next;
-    }
-
+//    pb(&stack_a, &stack_b);
+//    pb(&stack_a, &stack_b);
+//    pb(&stack_a, &stack_b);
+//    ra(&stack_a);
+//    rb(&stack_b);
+//    rrr(&stack_a, &stack_b);
+//
+//    t_stack *curr = stack_a;
+//    while (curr)
+//    {
+//        printf("stack a -> %d\n", curr->value);
+//        curr = curr->next;
+//    }
+//
+//    t_stack *curr_b = stack_b;
+//    while (curr_b)
+//    {
+//        printf("stack b -> %d\n", curr_b->value);
+//        curr_b = curr_b->next;
+//    }
 
     system("leaks -q push_swap");
 }

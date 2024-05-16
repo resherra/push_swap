@@ -32,3 +32,10 @@ t_stack *lstnew(int number);
 //stack_utils
 void pa(t_stack **a, t_stack **b);
 void pb(t_stack **a, t_stack **b);
+void ra(t_stack **a);
+void rb(t_stack **b);
+void rr(t_stack **a, t_stack **b);
+void rra(t_stack **a);
+void rrb(t_stack **b);
+void rrr(t_stack **a, t_stack **b);
+

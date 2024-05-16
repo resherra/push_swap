@@ -14,40 +14,38 @@
 
 void pa(t_stack **a, t_stack **b)
 {
-    //something
-    (void)a;
-    (void)b;
+    if (!(*b))
+        return;
+    if (!(*a))
+    {
+        *a = *b;
+        *b = (*b)->next;
+        (*a)->next = NULL;
+    }
+    else
+    {
+        t_stack *new_node = lstnew((*b)->value);
+        lstadd_front(a, new_node);
+        free(*b);
+        *b = (*b)->next;
+    }
 }
 
 void pb(t_stack **a, t_stack **b)
 {
-    (void)a;
-    t_stack *curr = NULL;
-
+    if (!(*a))
+        return ;
     if (!(*b))
     {
-        printf("here!\n");
         *b = *a;
-        *a = *a + 1;
+        *a = (*a)->next;
         (*b)->next = NULL;
     }
     else
     {
-        curr = *b;
-        while (curr->next)
-        {
-            curr = curr->next;
-        }
-        curr->next = *a;
-        *a = *a + 1;
+        t_stack *new_node = lstnew((*a)->value);
+        lstadd_front(b, new_node);
+        free(*a);
+        *a = (*a)->next;
     }
-
-//    while (curr->next)
-//    {
-//        curr = curr->next;
-//    }
-
-
-
-
 }

@@ -41,3 +41,16 @@ void	lstadd_back(t_stack **lst, t_stack *new)
         curr = curr->next;
     curr->next = new;
 }
+
+void	lstadd_front(t_stack **lst, t_stack *new)
+{
+    if (!lst)
+        return ;
+    if (*lst && new)
+    {
+        new->next = *lst;
+        *lst = new;
+    }
+    else
+        *lst = new;
+}
