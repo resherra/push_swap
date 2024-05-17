@@ -12,7 +12,7 @@
 
 #include "init.h"
 
-t_stack *lstnew(int number)
+t_stack *lstnew(int number, int index)
 {
     t_stack *node;
 
@@ -20,6 +20,8 @@ t_stack *lstnew(int number)
     if (!node)
         return (NULL);
     node->value = number;
+    if (index != -1)
+        node->index = index;
     node->next = NULL;
 
     return (node);
@@ -53,4 +55,19 @@ void	lstadd_front(t_stack **lst, t_stack *new)
     }
     else
         *lst = new;
+}
+
+int lst_size(t_stack *stack)
+{
+    int i;
+    t_stack *curr;
+
+    i = 0;
+    curr = stack;
+    while (curr)
+    {
+        i++;
+        curr = curr->next;
+    }
+    return i;
 }

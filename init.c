@@ -12,7 +12,7 @@
 
 #include "init.h"
 
-void check(char *str)
+void check(char *str, int *flag)
 {
     int i;
 
@@ -21,21 +21,24 @@ void check(char *str)
     {
         if ((str[i] == '-' || str[i] == '+'))
         {
+            if (str[i] == '-')
+                (*flag)++;
             if (str[i+1] < '0' || str[i+1] > '9')
             {
-                ft_printf("Error\n");
+                ft_printf("Error 1\n");
                 system("leaks -q push_swap");
                 exit(1);
             }
         }
         else if (str[i] < '0' || str[i] > '9')
         {
-            ft_printf("Error\n");
+            ft_printf("Error 2\n");
             system("leaks -q push_swap");
             exit(1);
         }
         i++;
     }
+    (*flag)++;
 }
 
 void is_repeated(t_stack **stack_a, int value)
@@ -45,7 +48,7 @@ void is_repeated(t_stack **stack_a, int value)
     {
         if (curr->value == value)
         {
-            ft_printf("Error / repeated\n");
+            ft_printf("Error 3\n");
             system("leaks -q push_swap");
             exit(1);
         }
@@ -57,6 +60,8 @@ void sanitize(char *str, t_stack **stack_a)
 {
     int i;
     char **res;
+    static int j;
+
 
     i = 0;
     res = ft_split(str, ' ');
@@ -67,14 +72,30 @@ void sanitize(char *str, t_stack **stack_a)
     }
     while (res[i])
     {
-        check(res[i]);
+        int flag = 0;
+        check(res[i], &flag);
+        int num = ft_atoi(res[i]);
+
+        //check overflow
+        if (num > 0 && flag == 2)
+        {
+            ft_printf("Error 4\n");
+            exit(1);
+        }
+        if (num < 0 && flag == 1)
+        {
+            ft_printf("Error 5\n");
+            exit(1);
+        }
+
 
         //create a node && add it to back
-        t_stack *new = lstnew(ft_atoi(res[i]));
+        t_stack *new = lstnew(num, j);
         lstadd_back(stack_a, new);
+        j++;
 
         //check if the value is already in the list;
-        is_repeated(stack_a, ft_atoi(res[i]));
+        is_repeated(stack_a, num);
         free(res[i]);
         i++;
     }
@@ -83,21 +104,31 @@ void sanitize(char *str, t_stack **stack_a)
 
 void is_sorted(t_stack *stack_a)
 {
-    t_stack *curr = stack_a;
+    t_stack *curr;
+    int size;
 
-    while (curr)
+    size = lst_size(stack_a);
+    while (size)
     {
-        t_stack *tes = curr;
-        while (tes)
+        curr = stack_a;
+
+        while (curr)
         {
-            if (curr->value > tes->value)
-                return;
-            tes = tes->next;
+
+            curr = curr->next;
         }
-        curr = curr->next;
+        size--;
     }
-    exit(1);
+
+
+//    if (j == 0)
+//    {
+//        printf("sorted!\n");
+//        exit(0);
+//    }
 }
+
+
 
 int main(int ac, char **av)
 {
@@ -113,19 +144,20 @@ int main(int ac, char **av)
     while(av[i])
         sanitize(av[i++], &stack_a);
     is_sorted(stack_a);
+//    index_stack(stack_a);
+
 
 //    check values;
 //    pb(&stack_a, &stack_b);
 //    pb(&stack_a, &stack_b);
 //    pb(&stack_a, &stack_b);
-//    ra(&stack_a);
-//    rb(&stack_b);
+//    rr(&stack_a, &stack_b);
 //    rrr(&stack_a, &stack_b);
 //
 //    t_stack *curr = stack_a;
 //    while (curr)
 //    {
-//        printf("stack a -> %d\n", curr->value);
+//        printf("%3d | index %2d\n", curr->value, curr->index);
 //        curr = curr->next;
 //    }
 //

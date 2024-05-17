@@ -24,7 +24,7 @@ void pa(t_stack **a, t_stack **b)
     }
     else
     {
-        t_stack *new_node = lstnew((*b)->value);
+        t_stack *new_node = lstnew((*b)->value, -1);
         lstadd_front(a, new_node);
         free(*b);
         *b = (*b)->next;
@@ -43,7 +43,7 @@ void pb(t_stack **a, t_stack **b)
     }
     else
     {
-        t_stack *new_node = lstnew((*a)->value);
+        t_stack *new_node = lstnew((*a)->value, -1);
         lstadd_front(b, new_node);
         free(*a);
         *a = (*a)->next;

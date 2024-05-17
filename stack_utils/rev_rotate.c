@@ -23,7 +23,7 @@ void rra(t_stack **stack_a)
         prev = curr;
         curr = curr->next;
     }
-    t_stack *new_node = lstnew(curr->value);
+    t_stack *new_node = lstnew(curr->value, -1);
     lstadd_front(stack_a, new_node);
     if (prev)
         prev->next = NULL;
@@ -41,7 +41,7 @@ void rrb(t_stack **stack_b)
         prev = curr;
         curr = curr->next;
     }
-    t_stack *new_node = lstnew(curr->value);
+    t_stack *new_node = lstnew(curr->value, -1);
     lstadd_front(stack_b, new_node);
     if (prev)
         prev->next = NULL;

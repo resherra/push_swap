@@ -21,13 +21,15 @@
 typedef struct s_stack
 {
     int value;
+    int index;
     struct s_stack *next;
 } t_stack;
 
+t_stack *lstnew(int number, int index);
+int lst_size(t_stack *stack);
 void    lstadd_back(t_stack **lst, t_stack *new);
 void	lstadd_front(t_stack **lst, t_stack *new);
 
-t_stack *lstnew(int number);
 
 //stack_utils
 void pa(t_stack **a, t_stack **b);

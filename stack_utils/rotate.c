@@ -16,7 +16,7 @@ void ra(t_stack **stack_a)
 {
     if (!(*stack_a)->next)
         return ;
-    t_stack *new_node = lstnew((*stack_a)->value);
+    t_stack *new_node = lstnew((*stack_a)->value, -1);
     free(*stack_a);
     *stack_a = (*stack_a)->next;
     lstadd_back(stack_a, new_node);
@@ -26,7 +26,7 @@ void rb(t_stack **stack_b)
 {
     if (!(*stack_b)->next)
         return ;
-    t_stack  *new_node = lstnew((*stack_b)->value);
+    t_stack  *new_node = lstnew((*stack_b)->value, -1);
     free(*stack_b);
     *stack_b = (*stack_b)->next;
     lstadd_back(stack_b, new_node);
