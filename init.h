@@ -25,11 +25,19 @@ typedef struct s_stack
     struct s_stack *next;
 } t_stack;
 
+
+//lst utils
 t_stack *lstnew(int number, int index);
 int lst_size(t_stack *stack);
 void    lstadd_back(t_stack **lst, t_stack *new);
 void	lstadd_front(t_stack **lst, t_stack *new);
+void sanitize(char *str, t_stack **stack_a);
 
+//parsing utils
+void check(char *str, int *flag);
+void is_repeated(t_stack **stack_a, int value);
+void is_sorted(t_stack *stack_a);
+void sanitize(char *str, t_stack **stack_a);
 
 //stack_utils
 void pa(t_stack **a, t_stack **b);
