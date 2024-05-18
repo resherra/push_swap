@@ -102,32 +102,90 @@ void sanitize(char *str, t_stack **stack_a)
     free(res);
 }
 
+
 void is_sorted(t_stack *stack_a)
 {
-    t_stack *curr;
-    int size;
+    t_stack *curr = stack_a;
 
-    size = lst_size(stack_a);
-    while (size)
+    while (curr)
     {
-        curr = stack_a;
-
-        while (curr)
+        t_stack *tes = curr;
+        while (tes)
         {
-
-            curr = curr->next;
+            if (curr->value > tes->value)
+                return;
+            tes = tes->next;
         }
-        size--;
+        curr = curr->next;
     }
-
-
-//    if (j == 0)
-//    {
-//        printf("sorted!\n");
-//        exit(0);
-//    }
+    printf("sorted\n");
+    exit(1);
 }
 
+void sort_arr(int *arr, int len)
+{
+    int i = 0;
+    int j = 0;
+
+    while (i < len - 1)
+    {
+        j = 0;
+        while (j < len - i - 1)
+        {
+            if (arr[j] > arr[j+1])
+            {
+                int tmp  = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = tmp;
+            }
+            j++;
+        }
+        i++;
+    }
+
+}
+
+void act_index(t_stack *stack, int *arr, int len)
+{
+    t_stack *curr = stack;
+    int i = 0;
+
+    while (curr)
+    {
+        i = 0;
+        while (i < len)
+        {
+            if (curr->value == arr[i])
+            {
+                curr->index = i;
+            }
+            i++;
+        }
+        curr = curr->next;
+    }
+}
+
+void index_stack(t_stack *stack)
+{
+    int size;
+    int *arr;
+    t_stack *curr;
+
+    curr = stack;
+    size = lst_size(stack);
+    arr = malloc(sizeof(int) * size);
+    int i = 0;
+    while (curr)
+    {
+        arr[i++] = curr->value;
+        curr = curr->next;
+    }
+
+    sort_arr(arr, size);
+    act_index(stack, arr, size);
+
+    free(arr);
+}
 
 
 int main(int ac, char **av)
@@ -144,7 +202,7 @@ int main(int ac, char **av)
     while(av[i])
         sanitize(av[i++], &stack_a);
     is_sorted(stack_a);
-//    index_stack(stack_a);
+    index_stack(stack_a);
 
 
 //    check values;
@@ -154,12 +212,12 @@ int main(int ac, char **av)
 //    rr(&stack_a, &stack_b);
 //    rrr(&stack_a, &stack_b);
 //
-//    t_stack *curr = stack_a;
-//    while (curr)
-//    {
-//        printf("%3d | index %2d\n", curr->value, curr->index);
-//        curr = curr->next;
-//    }
+    t_stack *curr = stack_a;
+    while (curr)
+    {
+        printf("%3d | index %2d\n", curr->value, curr->index);
+        curr = curr->next;
+    }
 //
 //    t_stack *curr_b = stack_b;
 //    while (curr_b)
