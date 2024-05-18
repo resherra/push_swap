@@ -12,37 +12,19 @@
 
 #include "../init.h"
 
-void rra(t_stack **stack_a)
+void rev_rotate(t_stack **stack)
 {
-    if (!(*stack_a)->next)
+    if (!(*stack)->next)
         return ;
     t_stack *prev = NULL;
-    t_stack *curr = *stack_a;
+    t_stack *curr = *stack;
     while (curr->next)
     {
         prev = curr;
         curr = curr->next;
     }
     t_stack *new_node = lstnew(curr->value, -1);
-    lstadd_front(stack_a, new_node);
-    if (prev)
-        prev->next = NULL;
-    free(curr);
-}
-
-void rrb(t_stack **stack_b)
-{
-    if (!(*stack_b)->next)
-        return ;
-    t_stack *prev = NULL;
-    t_stack *curr = *stack_b;
-    while (curr->next)
-    {
-        prev = curr;
-        curr = curr->next;
-    }
-    t_stack *new_node = lstnew(curr->value, -1);
-    lstadd_front(stack_b, new_node);
+    lstadd_front(stack, new_node);
     if (prev)
         prev->next = NULL;
     free(curr);
@@ -50,6 +32,6 @@ void rrb(t_stack **stack_b)
 
 void rrr(t_stack **stack_a, t_stack **stack_b)
 {
-    rra(stack_a);
-    rrb(stack_b);
+    rev_rotate(stack_a);
+    rev_rotate(stack_b);
 }
