@@ -28,7 +28,6 @@ void is_sorted(t_stack *stack_a)
         }
         curr = curr->next;
     }
-    printf("sorted\n");
     exit(1);
 }
 
@@ -46,15 +45,13 @@ void check(char *str, int *flag)
                 (*flag)++;
             if (str[i+1] < '0' || str[i+1] > '9')
             {
-                ft_printf("Error 1\n");
-                system("leaks -q push_swap");
+                ft_printf("Error\n");
                 exit(1);
             }
         }
         else if (str[i] < '0' || str[i] > '9')
         {
-            ft_printf("Error 2\n");
-            system("leaks -q push_swap");
+            ft_printf("Error\n");
             exit(1);
         }
         i++;
@@ -69,8 +66,7 @@ void is_repeated(t_stack **stack_a, int value)
     {
         if (curr->value == value)
         {
-            ft_printf("Error 3\n");
-            system("leaks -q push_swap");
+            ft_printf("Error\n");
             exit(1);
         }
         curr = curr->next;
@@ -87,10 +83,7 @@ void sanitize(char *str, t_stack **stack_a)
     i = 0;
     res = ft_split(str, ' ');
     if (res == NULL)
-    {
-        system("leaks -q push_swap");
         exit(1);
-    }
     while (res[i])
     {
         int flag = 0;
@@ -100,15 +93,14 @@ void sanitize(char *str, t_stack **stack_a)
         //check overflow
         if (num > 0 && flag == 2)
         {
-            ft_printf("Error 4\n");
+            ft_printf("Error\n");
             exit(1);
         }
         if (num < 0 && flag == 1)
         {
-            ft_printf("Error 5\n");
+            ft_printf("Error\n");
             exit(1);
         }
-
 
         //create a node && add it to back
         t_stack *new = lstnew(num, j);

@@ -20,8 +20,7 @@ t_stack *lstnew(int number, int index)
     if (!node)
         return (NULL);
     node->value = number;
-    if (index != -1)
-        node->index = index;
+    node->index = index;
     node->next = NULL;
 
     return (node);

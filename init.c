@@ -13,7 +13,7 @@
 #include "init.h"
 
 
-int countBits(unsigned int n)
+int count_bits(unsigned int n)
 {
     int count = 0;
     while (n)
@@ -36,52 +36,85 @@ void radix(t_stack **stack_a, t_stack **stack_b)
             max = curr->index;
         curr = curr->next;
     }
-    max_bits = countBits(max);
+    max_bits = count_bits(max);
 
-    //check the bit -> push to b || rotate a (save the first rotate to a to break) -> push everything back a
-    //increment to second bit.
-
-    int save = -1;
     int i = 0;
     while (i < max_bits)
     {
-
-
+        int j = 0;
+        int size = lst_size(*stack_a);
+        while (j < size)
+        {
+            if (((((*stack_a)->index) >> i)&1) == 0)
+            {
+                pb(stack_a, stack_b);
+                ft_printf("pb\n");
+            }
+            else
+            {
+                rotate(stack_a);
+                ft_printf("ra\n");
+            }
+            j++;
+        }
+        while (*stack_b)
+        {
+            pa(stack_a, stack_b);
+            ft_printf("pa\n");
+        }
         i++;
     }
-//        while (1)
-//        {
-//            if (((((*stack_a)->index)>>i)&1) == 0)
-//            {
-//                pb(stack_a, stack_b);
-//                printf("pb\n");
-//            }
-//            else if (((((*stack_a)->index)>>i)&1) == 1)
-//            {
-//                if (save == -1)
-//                    save = (*stack_a)->index;
-//                while (save != (*stack_a)->index)
-//                {
-//                    rotate(stack_a);
-//                    printf("ra\n");
-//                }
-//                break;
-//
-//            }
-//        }
-//        while (1)
-//        {
-//            if (lst_size(*stack_b) == 0)
-//                break;
-//            pa(stack_a, stack_b);
-//            printf("pa\n");
-//        }
-//        save = -1;
-//        i++;
-//    }
 }
 
+typedef struct s_holder
+{
+    int a;
+    int b;
+    int c;
+} t_holder;
 
+void init(t_holder *holder, t_stack *stack_a)
+{
+    holder->a = stack_a->value;
+    holder->b = stack_a->next->value;
+    holder->c = stack_a->next->next->value;
+}
+
+void sort_three(t_stack **stack_a)
+{
+    t_holder holder;
+
+    init(&holder, *stack_a);
+    if (holder.a > holder.b && holder.a > holder.c)
+    {
+        if (holder.b < holder.c)
+            rotate(stack_a);
+        else
+        {
+            swap(stack_a);
+            rev_rotate(stack_a);
+        }
+    }
+    else if (holder.a > holder.b && holder.b < holder.c)
+        swap(stack_a);
+    else if (holder.b > holder.a && holder.b > holder.c)
+    {
+        if (holder.a > holder.c)
+            rev_rotate(stack_a);
+        else
+        {
+            rev_rotate(stack_a);
+            swap(stack_a);
+        }
+    }
+
+}
+
+void sort_five(t_stack **stack_a, t_stack **stack_b)
+{
+    sort_three(stack_a);
+    //something
+}
 
 int main(int ac, char **av)
 {
@@ -97,22 +130,15 @@ int main(int ac, char **av)
     while(av[i])
         sanitize(av[i++], &stack_a);
     is_sorted(stack_a);
-    index_stack(stack_a);
-    radix(&stack_a, &stack_b);
-
-    t_stack *curr = stack_a;
-    while (curr)
+    if (lst_size(stack_a) == 3)
+        sort_three(&stack_a);
+    else if (lst_size(stack_a) == 5)
+        sort_five(&stack_a, &stack_b);
+    else
     {
-        printf("stack a %4d | %3d\n", curr->value, curr->index);
-        curr = curr->next;
+        index_stack(stack_a);
+        radix(&stack_a, &stack_b);
     }
 
-    t_stack *curr_b = stack_b;
-    while (curr_b)
-    {
-        printf("stack a %4d | %3d\n", curr_b->value, curr_b ->index);
-        curr_b = curr_b->next;
-    }
-
-//    system("leaks -q push_swap");
+    system("leaks -q push_swap");
 }

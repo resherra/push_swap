@@ -23,7 +23,7 @@ void rev_rotate(t_stack **stack)
         prev = curr;
         curr = curr->next;
     }
-    t_stack *new_node = lstnew(curr->value, -1);
+    t_stack *new_node = lstnew(curr->value, curr->index);
     lstadd_front(stack, new_node);
     if (prev)
         prev->next = NULL;
