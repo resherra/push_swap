@@ -88,26 +88,38 @@ void sort_three(t_stack **stack_a)
     if (holder.a > holder.b && holder.a > holder.c)
     {
         if (holder.b < holder.c)
+        {
             rotate(stack_a);
+            ft_printf("ra\n");
+        }
         else
         {
             swap(stack_a);
+            ft_printf("sa\n");
             rev_rotate(stack_a);
+            ft_printf("rra\n");
         }
     }
     else if (holder.a > holder.b && holder.b < holder.c)
+    {
         swap(stack_a);
+        ft_printf("sa\n");
+    }
     else if (holder.b > holder.a && holder.b > holder.c)
     {
         if (holder.a > holder.c)
+        {
             rev_rotate(stack_a);
+            ft_printf("rra\n");
+        }
         else
         {
             rev_rotate(stack_a);
             swap(stack_a);
+            ft_printf("rra\n");
+            ft_printf("sa\n");
         }
     }
-
 }
 
 void sort_five(t_stack **stack_a, t_stack **stack_b)
@@ -130,15 +142,23 @@ int main(int ac, char **av)
     while(av[i])
         sanitize(av[i++], &stack_a);
     is_sorted(stack_a);
+    index_stack(stack_a);
     if (lst_size(stack_a) == 3)
         sort_three(&stack_a);
     else if (lst_size(stack_a) == 5)
         sort_five(&stack_a, &stack_b);
     else
     {
-        index_stack(stack_a);
         radix(&stack_a, &stack_b);
     }
-
-    system("leaks -q push_swap");
+//
+//
+//    t_stack *curr = stack_a;
+//    while (curr)
+//    {
+//        printf("%3d\n", curr->value);
+//        curr = curr->next;
+//    }
+//
+//    system("leaks -q push_swap");
 }

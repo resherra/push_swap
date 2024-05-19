@@ -31,6 +31,7 @@ t_stack *lstnew(int number, int index);
 int lst_size(t_stack *stack);
 void    lstadd_back(t_stack **lst, t_stack *new);
 void	lstadd_front(t_stack **lst, t_stack *new);
+void swap(t_stack **stack);
 
 //parsing utils
 void check(char *str, int *flag);

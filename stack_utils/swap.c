@@ -10,9 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
+#include "../init.h"
 
 void swap(t_stack **stack)
 {
+    int tmp;
 
+    tmp = (*stack)->value;
+    (*stack)->value = (*stack)->next->value;
+    (*stack)->next->value = tmp;
 }
