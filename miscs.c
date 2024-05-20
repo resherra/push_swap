@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   miscs.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/19 16:19:35 by recherra          #+#    #+#             */
-/*   Updated: 2024/05/19 16:19:36 by recherra         ###   ########.fr       */
+/*   Created: 2024/05/20 13:26:15 by recherra          #+#    #+#             */
+/*   Updated: 2024/05/20 13:26:16 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../init.h"
+#include "init.h"
 
-void swap(t_stack **stack)
+void ft_error()
 {
-    int tmp;
-
-    tmp = (*stack)->value;
-    (*stack)->value = (*stack)->next->value;
-    (*stack)->next->value = tmp;
-    ft_printf("sa\n");
+    ft_printf("Error\n");
+    exit(1);
 }

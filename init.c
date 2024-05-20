@@ -15,21 +15,29 @@
 
 int count_bits(unsigned int n)
 {
-    int count = 0;
+    int count;
+
+    count = 0;
     while (n)
     {
         count++;
-        n >>= 1;
+        n = n >> 1;
     }
     return count;
 }
 
 void radix(t_stack **stack_a, t_stack **stack_b)
 {
-    t_stack *curr = *stack_a;
-    unsigned int max = 0;
-    int max_bits = 0;
+    t_stack *curr;
+    int size;
+    unsigned int max;
+    int max_bits;
+    int i;
+    int j;
 
+
+    curr = *stack_a;
+    max = 0;
     while (curr)
     {
         if (curr->index > max)
@@ -37,41 +45,24 @@ void radix(t_stack **stack_a, t_stack **stack_b)
         curr = curr->next;
     }
     max_bits = count_bits(max);
-
-    int i = 0;
+    i = 0;
     while (i < max_bits)
     {
-        int j = 0;
-        int size = lst_size(*stack_a);
+        j = 0;
+        size = lst_size(*stack_a);
         while (j < size)
         {
             if (((((*stack_a)->index) >> i)&1) == 0)
-            {
                 pb(stack_a, stack_b);
-                ft_printf("pb\n");
-            }
             else
-            {
                 rotate(stack_a);
-                ft_printf("ra\n");
-            }
             j++;
         }
         while (*stack_b)
-        {
             pa(stack_a, stack_b);
-            ft_printf("pa\n");
-        }
         i++;
     }
 }
-
-typedef struct s_holder
-{
-    int a;
-    int b;
-    int c;
-} t_holder;
 
 void init(t_holder *holder, t_stack *stack_a)
 {
@@ -88,48 +79,42 @@ void sort_three(t_stack **stack_a)
     if (holder.a > holder.b && holder.a > holder.c)
     {
         if (holder.b < holder.c)
-        {
             rotate(stack_a);
-            ft_printf("ra\n");
-        }
         else
         {
             swap(stack_a);
-            ft_printf("sa\n");
             rev_rotate(stack_a);
-            ft_printf("rra\n");
         }
     }
     else if (holder.a > holder.b && holder.b < holder.c)
-    {
         swap(stack_a);
-        ft_printf("sa\n");
-    }
     else if (holder.b > holder.a && holder.b > holder.c)
     {
         if (holder.a > holder.c)
-        {
             rev_rotate(stack_a);
-            ft_printf("rra\n");
-        }
         else
         {
             rev_rotate(stack_a);
             swap(stack_a);
-            ft_printf("rra\n");
-            ft_printf("sa\n");
         }
     }
 }
 
 void sort_five(t_stack **stack_a, t_stack **stack_b)
 {
-    int i = 0;
+    int i;
+    int min;
+    int index;
+    int size;
+    int tmp;
+    t_stack *curr;
+
+    i = 0;
     while (i < 2)
     {
-        t_stack *curr = *stack_a;
-        int min = (*stack_a)->value;
-        int index = (*stack_a)->index;
+        curr = *stack_a;
+        min = (*stack_a)->value;
+        index = (*stack_a)->index;
         while (curr)
         {
             if (curr->value < min)
@@ -139,34 +124,24 @@ void sort_five(t_stack **stack_a, t_stack **stack_b)
             }
             curr = curr->next;
         }
-        int size = lst_size(*stack_a) - 1;
-        int tmp = size / 2;
+        size = lst_size(*stack_a) - 1;
+        tmp = size / 2;
         if (index < tmp)
         {
             while ((*stack_a)->value != min)
-            {
                 rotate(stack_a);
-                ft_printf("ra\n");
-            }
         }
         else
         {
             while ((*stack_a)->value != min)
-            {
                 rev_rotate(stack_a);
-                ft_printf("rra\n");
-            }
         }
         pb(stack_a, stack_b);
-        ft_printf("pb\n");
         i++;
     }
     sort_three(stack_a);
     while (*stack_b)
-    {
         pa(stack_a, stack_b);
-        ft_printf("pa\n");
-    }
 }
 
 int main(int ac, char **av)
@@ -200,6 +175,6 @@ int main(int ac, char **av)
 //        printf("%3d\n", curr->value);
 //        curr = curr->next;
 //    }
-//
+
 //    system("leaks -q push_swap");
 }

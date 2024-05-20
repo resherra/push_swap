@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-#CFLAGS=-Wall -Wextra
- CFLAGS=-Wall -Wextra -fsanitize=address -g
-SRC=init.c list_utils.c parsing_utils.c pre_sort_utils.c stack_utils/push.c stack_utils/rotate.c stack_utils/rev_rotate.c stack_utils/swap.c
+CFLAGS=-Wall -Wextra
+#  CFLAGS=-Wall -Wextra -fsanitize=address -g
+SRC=init.c list_utils.c parsing_utils.c pre_sort_utils.c stack_utils/push.c stack_utils/rotate.c stack_utils/rev_rotate.c stack_utils/swap.c miscs.c
 OBJ=$(SRC:.c=.o)
 NAME=push_swap
 LIBFT=libft/libft.a

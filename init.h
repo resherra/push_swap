@@ -13,7 +13,6 @@
 
 #include "ft_printf/ft_printf.h"
 #include "libft/libft.h"
-#include <stdio.h>
 
 //read, write, malloc, free,
 //exit
@@ -21,10 +20,19 @@
 typedef struct s_stack
 {
     int value;
-    unsigned  int index;
+    unsigned int index;
     struct s_stack *next;
 } t_stack;
 
+typedef struct s_holder
+{
+    int a;
+    int b;
+    int c;
+} t_holder;
+
+//miscs
+void ft_error();
 
 //lst utils
 t_stack *lstnew(int number, int index);
@@ -48,7 +56,5 @@ void index_stack(t_stack *stack);
 void pa(t_stack **a, t_stack **b);
 void pb(t_stack **a, t_stack **b);
 void rotate(t_stack **stack);
-void rr(t_stack **a, t_stack **b);
 void rev_rotate(t_stack **stack);
-void rrr(t_stack **a, t_stack **b);
 

@@ -22,7 +22,6 @@ t_stack *lstnew(int number, int index)
     node->value = number;
     node->index = index;
     node->next = NULL;
-
     return (node);
 }
 

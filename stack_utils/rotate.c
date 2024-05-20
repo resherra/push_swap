@@ -21,10 +21,5 @@ void rotate(t_stack **stack)
     *stack = (*stack)->next;
     free(curr);
     lstadd_back(stack, new_node);
-}
-
-void rr(t_stack **stack_a, t_stack **stack_b)
-{
-    rotate(stack_a);
-    rotate(stack_b);
+    ft_printf("ra\n");
 }

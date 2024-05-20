@@ -30,6 +30,7 @@ void pa(t_stack **a, t_stack **b)
         *b = (*b)->next;
         free(curr);
     }
+    ft_printf("pa\n");
 }
 
 void pb(t_stack **a, t_stack **b)
@@ -50,4 +51,5 @@ void pb(t_stack **a, t_stack **b)
         *a = (*a)->next;
         free(curr);
     }
+    ft_printf("pb\n");
 }

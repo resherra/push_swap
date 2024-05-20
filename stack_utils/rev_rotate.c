@@ -28,10 +28,5 @@ void rev_rotate(t_stack **stack)
     if (prev)
         prev->next = NULL;
     free(curr);
-}
-
-void rrr(t_stack **stack_a, t_stack **stack_b)
-{
-    rev_rotate(stack_a);
-    rev_rotate(stack_b);
+    ft_printf("rra\n");
 }

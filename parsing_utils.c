@@ -12,14 +12,40 @@
 
 #include "init.h"
 
+int	ft_atoi_basic(const char *str)
+{
+    int	number;
+    int	sign;
+    int i;
+
+    number = 0;
+    sign = 0;
+    i = 0;
+    if (str[i] == '+' || str[i] == '-')
+    {
+        if (str[i] == '-')
+            sign = 1;
+        i++;
+    }
+    while (str[i] >= '0' && str[i] <= '9')
+        number = (number * 10) + (str[i++] - 48);
+    if (str[i])
+        ft_error();
+    if (sign == 1)
+        return (-number);
+    return (number);
+}
+
 
 void is_sorted(t_stack *stack_a)
 {
-    t_stack *curr = stack_a;
+    t_stack *curr;
+    t_stack *tes;
 
+    curr = stack_a;
     while (curr)
     {
-        t_stack *tes = curr;
+        tes = curr;
         while (tes)
         {
             if (curr->value > tes->value)
@@ -30,7 +56,6 @@ void is_sorted(t_stack *stack_a)
     }
     exit(1);
 }
-
 
 void check(char *str, int *flag)
 {
@@ -44,16 +69,10 @@ void check(char *str, int *flag)
             if (str[i] == '-')
                 (*flag)++;
             if (str[i+1] < '0' || str[i+1] > '9')
-            {
-                ft_printf("Error\n");
-                exit(1);
-            }
+                ft_error();
         }
         else if (str[i] < '0' || str[i] > '9')
-        {
-            ft_printf("Error\n");
-            exit(1);
-        }
+            ft_error();
         i++;
     }
     (*flag)++;
@@ -61,14 +80,13 @@ void check(char *str, int *flag)
 
 void is_repeated(t_stack **stack_a, int value)
 {
-    t_stack *curr = (*stack_a);
+    t_stack *curr;
+
+    curr = *stack_a;
     while (curr->next)
     {
         if (curr->value == value)
-        {
-            ft_printf("Error\n");
-            exit(1);
-        }
+            ft_error();
         curr = curr->next;
     }
 }
@@ -88,26 +106,14 @@ void sanitize(char *str, t_stack **stack_a)
     {
         int flag = 0;
         check(res[i], &flag);
-        int num = ft_atoi(res[i]);
-
-        //check overflow
+        int num = ft_atoi_basic(res[i]);
         if (num > 0 && flag == 2)
-        {
-            ft_printf("Error\n");
-            exit(1);
-        }
+            ft_error();
         if (num < 0 && flag == 1)
-        {
-            ft_printf("Error\n");
-            exit(1);
-        }
-
-        //create a node && add it to back
+            ft_error();
         t_stack *new = lstnew(num, j);
         lstadd_back(stack_a, new);
         j++;
-
-        //check if the value is already in the list;
         is_repeated(stack_a, num);
         free(res[i]);
         i++;
