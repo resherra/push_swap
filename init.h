@@ -6,15 +6,12 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:56:48 by recherra          #+#    #+#             */
-/*   Updated: 2024/05/20 16:49:08 by recherra         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:52:38 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf/ft_printf.h"
 #include "libft/libft.h"
-
-//read, write, malloc, free,
-//exit
 
 typedef struct s_stack
 {
