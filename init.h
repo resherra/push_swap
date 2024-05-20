@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef INIT_H
+#define INIT_H
+
 #include "ft_printf/ft_printf.h"
 #include "libft/libft.h"
 
@@ -28,7 +31,7 @@ typedef struct s_holder
 }					t_holder;
 
 //miscs
-void				ft_error(void);
+void				ft_error();
 void				init(t_holder *holder, t_stack *stack_a);
 void				check_overflow(int num, int flag);
 
@@ -59,3 +62,5 @@ void				pa(t_stack **a, t_stack **b);
 void				pb(t_stack **a, t_stack **b);
 void				rotate(t_stack **stack);
 void				rev_rotate(t_stack **stack);
+
+#endif

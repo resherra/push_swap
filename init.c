@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:21:08 by recherra          #+#    #+#             */
-/*   Updated: 2024/05/20 15:17:40 by recherra         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:40:15 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,15 @@ int	main(int ac, char **av)
 	stack_a = NULL;
 	i = 1;
 	if (ac == 1)
-		return (1);
+		return (0);
+	if (!ft_strlen(av[i]))
+        ft_error();
 	while (av[i])
 		sanitize(av[i++], &stack_a);
 	is_sorted(stack_a);
-	if (lst_size(stack_a) == 3)
+	if (lst_size(stack_a) == 2)
+	    swap(&stack_a);
+	else if (lst_size(stack_a) == 3)
 		sort_three(&stack_a);
 	else if (lst_size(stack_a) == 5)
 		sort_five(&stack_a, &stack_b);

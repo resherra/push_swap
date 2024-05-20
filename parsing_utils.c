@@ -53,7 +53,7 @@ void	is_sorted(t_stack *stack_a)
 		}
 		curr = curr->next;
 	}
-	exit(1);
+	exit(0);
 }
 
 void	check(char *str, int *flag)

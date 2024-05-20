@@ -14,7 +14,7 @@
 
 void	ft_error(void)
 {
-	ft_printf("Error\n");
+	ft_putendl_fd("Error", 2);
 	exit(1);
 }
 

@@ -10,8 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS=-Wall -Wextra
-#  CFLAGS=-Wall -Wextra -fsanitize=address -g
+CFLAGS=-Wall -Wextra -Werror
 SRC=init.c list_utils.c parsing_utils.c pre_sort_utils.c stack_utils/push.c stack_utils/rotate.c stack_utils/rev_rotate.c stack_utils/swap.c miscs.c sort_three.c sort_five.c
 OBJ=$(SRC:.c=.o)
 NAME=push_swap
