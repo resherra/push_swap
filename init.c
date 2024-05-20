@@ -124,8 +124,49 @@ void sort_three(t_stack **stack_a)
 
 void sort_five(t_stack **stack_a, t_stack **stack_b)
 {
+    int i = 0;
+    while (i < 2)
+    {
+        t_stack *curr = *stack_a;
+        int min = (*stack_a)->value;
+        int index = (*stack_a)->index;
+        while (curr)
+        {
+            if (curr->value < min)
+            {
+                min = curr->value;
+                index = curr->index;
+            }
+            curr = curr->next;
+        }
+        int size = lst_size(*stack_a) - 1;
+        int tmp = size / 2;
+        if (index < tmp)
+        {
+            while ((*stack_a)->value != min)
+            {
+                rotate(stack_a);
+                ft_printf("ra\n");
+            }
+        }
+        else
+        {
+            while ((*stack_a)->value != min)
+            {
+                rev_rotate(stack_a);
+                ft_printf("rra\n");
+            }
+        }
+        pb(stack_a, stack_b);
+        ft_printf("pb\n");
+        i++;
+    }
     sort_three(stack_a);
-    //something
+    while (*stack_b)
+    {
+        pa(stack_a, stack_b);
+        ft_printf("pa\n");
+    }
 }
 
 int main(int ac, char **av)
@@ -142,13 +183,13 @@ int main(int ac, char **av)
     while(av[i])
         sanitize(av[i++], &stack_a);
     is_sorted(stack_a);
-    index_stack(stack_a);
     if (lst_size(stack_a) == 3)
         sort_three(&stack_a);
     else if (lst_size(stack_a) == 5)
         sort_five(&stack_a, &stack_b);
     else
     {
+        index_stack(stack_a);
         radix(&stack_a, &stack_b);
     }
 //
