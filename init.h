@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 
 #ifndef INIT_H
-#define INIT_H
+# define INIT_H
 
-#include "ft_printf/ft_printf.h"
-#include "libft/libft.h"
+# include "ft_printf/ft_printf.h"
+# include "libft/libft.h"
 
 typedef struct s_stack
 {
@@ -31,7 +31,7 @@ typedef struct s_holder
 }					t_holder;
 
 //miscs
-void				ft_error();
+void				ft_error(void);
 void				init(t_holder *holder, t_stack *stack_a);
 void				check_overflow(int num, int flag);
 

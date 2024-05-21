@@ -82,12 +82,12 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		return (0);
 	if (!ft_strlen(av[i]))
-        ft_error();
+		ft_error();
 	while (av[i])
 		sanitize(av[i++], &stack_a);
 	is_sorted(stack_a);
 	if (lst_size(stack_a) == 2)
-	    swap(&stack_a);
+		swap(&stack_a);
 	else if (lst_size(stack_a) == 3)
 		sort_three(&stack_a);
 	else if (lst_size(stack_a) == 5)
