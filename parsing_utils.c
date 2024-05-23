@@ -6,11 +6,25 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 15:42:34 by recherra          #+#    #+#             */
-/*   Updated: 2024/05/20 16:50:17 by recherra         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:25:58 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
+
+void	check_len(const char *str)
+{
+	int	len;
+	int	i;
+
+	i = 0;
+	while (str[i] == '-' || str[i] == '+' || str[i] == '0')
+		i++;
+	str += i;
+	len = ft_strlen(str);
+	if (len > 10)
+		ft_error();
+}
 
 int	ft_atoi_basic(const char *str)
 {
@@ -21,6 +35,7 @@ int	ft_atoi_basic(const char *str)
 	number = 0;
 	sign = 0;
 	i = 0;
+	check_len(str);
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
